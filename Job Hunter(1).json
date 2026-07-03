@@ -1,0 +1,1570 @@
+{
+  "name": "Job Hunter",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "ahmedhassanqutp2015@gmail.com",
+        "subject": "={{ $('Details').item.json.command_label }} - Matches Found",
+        "message": "={{ $json.data[0].output }}\n<br/>\n{{ $json.data[1].output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3280,
+        1280
+      ],
+      "id": "c82a0429-e075-4ef4-bea1-32078c4d434b",
+      "name": "Send a message",
+      "webhookId": "96d305e3-0a2a-4818-a1d5-361e547295d5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9wtxL0BoTSKSg8bz",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Details').item.json.chat_id }}",
+        "text": "=📡 {{ $('Details').item.json.command_label }}\n\nFound {{ $('Aggregate Jobs').all().length }} matching job(s) with score 7+.\nFull formatted results have been sent to your email.\n\nTop match: {{ $json.data[0].output ? 'see email for details' : 'check email' }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3232,
+        1520
+      ],
+      "id": "f60fb46e-e053-429f-8074-935952538bd8",
+      "name": "Send Telegram Digest",
+      "webhookId": "telegram-digest-webhook-id",
+      "credentials": {
+        "telegramApi": {
+          "id": "VRMkf6bK7oYFeub0",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -368,
+        496
+      ],
+      "id": "d2566ead-f21e-4fbd-87a6-3a013870d606",
+      "name": "Telegram Trigger",
+      "webhookId": "telegram-trigger-webhook-id",
+      "credentials": {
+        "telegramApi": {
+          "id": "VRMkf6bK7oYFeub0",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c1-oran",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/oran",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c2-core",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/core",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c3-ip",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/ip",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c4-rnd",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/rnd",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c5-egypt",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/egypt",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c6-remote",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/remote",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c7-help",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c8-jobs",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/jobs",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -144,
+        448
+      ],
+      "id": "b7213bd8-2036-4286-a55b-e05dde6cb9dd",
+      "name": "Command Router"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-oran",
+              "name": "search_query",
+              "value": "Open RAN Engineer OR O-RAN Engineer OR Near-RT RIC Engineer OR xApp Developer OR rApp Developer",
+              "type": "string"
+            },
+            {
+              "id": "country-oran",
+              "name": "country_code",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "remote-oran",
+              "name": "remote_only",
+              "value": "false",
+              "type": "string"
+            },
+            {
+              "id": "label-oran",
+              "name": "command_label",
+              "value": "Open RAN Jobs",
+              "type": "string"
+            },
+            {
+              "id": "chat-oran",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        176
+      ],
+      "id": "b4f2f683-d3ee-426a-a006-bd88a2a6c355",
+      "name": "Set Query - ORAN"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-core",
+              "name": "search_query",
+              "value": "Core Network Engineer OR 5G Core Engineer OR 4G Core Engineer OR IMS Engineer OR VoLTE Engineer OR VoNR Engineer OR EPC Engineer",
+              "type": "string"
+            },
+            {
+              "id": "country-core",
+              "name": "country_code",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "remote-core",
+              "name": "remote_only",
+              "value": "false",
+              "type": "string"
+            },
+            {
+              "id": "label-core",
+              "name": "command_label",
+              "value": "Core Network Jobs",
+              "type": "string"
+            },
+            {
+              "id": "chat-core",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        352
+      ],
+      "id": "4ef76f6a-85a7-4215-bdcb-eb915ecb5b50",
+      "name": "Set Query - CORE"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-ip",
+              "name": "search_query",
+              "value": "IP Network Engineer OR Transmission Engineer OR IP Engineer Telecom",
+              "type": "string"
+            },
+            {
+              "id": "country-ip",
+              "name": "country_code",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "remote-ip",
+              "name": "remote_only",
+              "value": "false",
+              "type": "string"
+            },
+            {
+              "id": "label-ip",
+              "name": "command_label",
+              "value": "IP Network Jobs",
+              "type": "string"
+            },
+            {
+              "id": "chat-ip",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        496
+      ],
+      "id": "5d683bb1-c0b0-4c6e-886b-c5b7dce5564a",
+      "name": "Set Query - IP"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-rnd",
+              "name": "search_query",
+              "value": "Telecom Research Engineer OR R&D Engineer 5G OR Innovation Engineer Telecom OR RAN Research Engineer",
+              "type": "string"
+            },
+            {
+              "id": "country-rnd",
+              "name": "country_code",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "remote-rnd",
+              "name": "remote_only",
+              "value": "false",
+              "type": "string"
+            },
+            {
+              "id": "label-rnd",
+              "name": "command_label",
+              "value": "R&D Opportunities",
+              "type": "string"
+            },
+            {
+              "id": "chat-rnd",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        656
+      ],
+      "id": "f802d990-3575-4a98-a09e-45a029c99826",
+      "name": "Set Query - RND"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-egypt",
+              "name": "search_query",
+              "value": "Telecom Engineer OR RAN Engineer OR RF Engineer OR Network Engineer",
+              "type": "string"
+            },
+            {
+              "id": "country-egypt",
+              "name": "country_code",
+              "value": "eg",
+              "type": "string"
+            },
+            {
+              "id": "remote-egypt",
+              "name": "remote_only",
+              "value": "false",
+              "type": "string"
+            },
+            {
+              "id": "label-egypt",
+              "name": "command_label",
+              "value": "Egypt Telecom Jobs",
+              "type": "string"
+            },
+            {
+              "id": "chat-egypt",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        784
+      ],
+      "id": "12002794-99c1-4a37-bb13-d5d5b78cb00a",
+      "name": "Set Query - EGYPT"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-remote",
+              "name": "search_query",
+              "value": "RAN Engineer OR O-RAN Engineer OR Telecom Software Engineer OR Network Optimization Engineer",
+              "type": "string"
+            },
+            {
+              "id": "country-remote",
+              "name": "country_code",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "remote-remote",
+              "name": "remote_only",
+              "value": "true",
+              "type": "string"
+            },
+            {
+              "id": "label-remote",
+              "name": "command_label",
+              "value": "Remote Telecom Jobs",
+              "type": "string"
+            },
+            {
+              "id": "chat-remote",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        944
+      ],
+      "id": "add829ce-a0ef-4995-af23-ab981745b686",
+      "name": "Set Query - REMOTE"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "q-jobs",
+              "name": "search_query",
+              "value": "Open RAN Engineer OR RAN Engineer OR Core Network Engineer OR RF Optimization Engineer OR Telecom Software Engineer OR O-RAN Engineer",
+              "type": "string"
+            },
+            {
+              "id": "country-jobs",
+              "name": "country_code",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "remote-jobs",
+              "name": "remote_only",
+              "value": "false",
+              "type": "string"
+            },
+            {
+              "id": "label-jobs",
+              "name": "command_label",
+              "value": "Top Telecom Jobs",
+              "type": "string"
+            },
+            {
+              "id": "chat-jobs",
+              "name": "chat_id",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        1072
+      ],
+      "id": "e274b3eb-6964-47e7-9eb5-f35975bd95da",
+      "name": "Set Query - JOBS"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=Available commands:\n/jobs - Full telecom search\n/oran - Open RAN jobs\n/core - Core Network jobs\n/ip - IP jobs\n/rnd - Research & Development jobs\n/egypt - Egypt jobs\n/remote - Remote jobs\n/help - This message",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        1216
+      ],
+      "id": "4f52a2fe-5170-474d-8ec6-ad9d9353b7bf",
+      "name": "Send Help",
+      "webhookId": "telegram-help-webhook-id",
+      "credentials": {
+        "telegramApi": {
+          "id": "VRMkf6bK7oYFeub0",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        864,
+        544
+      ],
+      "id": "7a23d738-2c9a-4d42-aa4f-a3da7e64de90",
+      "name": "Merge Commands",
+      "notesInFlow": false,
+      "notes": "Merges all 7 search-producing command branches back into one stream before resume lookup + JSearch call"
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        704,
+        1136
+      ],
+      "id": "011e8ef7-9384-41b0-96d8-2fbcb3e6d883",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.match_reason }}",
+        "options": {
+          "systemMessage": "=You are an AI career coach. You will receive a JSON array where each object contains a \"match_reason\" field — an array of text explaining why a candidate matches a job.\n\nYour task is to analyze these match reasons and produce output formatted in **HTML** suitable for an email body:\n\n**Areas to Improve:** A bullet list of specific skills, technologies, or knowledge the candidate should develop or strengthen to qualify for more job openings. Only include actionable items addressing skill gaps mentioned in the match reasons.\n\n**HTML Output Format:**\n\n<div style=\"font-family: Arial, sans-serif; color: #333; line-height: 1.5; max-width: 600px; margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);\"> \n\n  <h2 style=\"color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;\">Areas to Improve</h2>\n  <ul style=\"font-size: 16px; margin-top: 10px; padding-left: 20px;\">\n    <li>[Skill/technology/knowledge area 1]</li>\n    <li>[Skill/technology/knowledge area 2]</li>\n    <li>...</li>\n  </ul>\n\n</div>\n\n**Important:** \n- Do not include any extra commentary beyond the improvement list. \n- Use only the information provided in the match_reason fields.\n- Always output in HTML format exactly as specified.\n- Ensure the HTML is clean, readable, and can be used directly as an email body.\n- Output ONLY raw HTML\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        2528,
+        1488
+      ],
+      "id": "e24bdbe2-f088-4240-b5f1-e238e83dc2dd",
+      "name": "Analyze what skills to learn"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        1472,
+        544
+      ],
+      "id": "8832a32b-edc4-40a8-9d54-4f7c6daf0378",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "21b6e2e0-70e3-4b97-8f43-710f6b96b31a",
+              "name": "expected_salary",
+              "value": 100000,
+              "type": "number"
+            },
+            {
+              "id": "91461966-8461-4281-bbce-e34c8954be2e",
+              "name": "resume",
+              "value": "={{ $('Resume Agent').item.json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "carry-search-query",
+              "name": "search_query",
+              "value": "={{ $('Merge Commands').item.json.search_query }}",
+              "type": "string"
+            },
+            {
+              "id": "carry-country",
+              "name": "country_code",
+              "value": "={{ $('Merge Commands').item.json.country_code }}",
+              "type": "string"
+            },
+            {
+              "id": "carry-remote",
+              "name": "remote_only",
+              "value": "={{ $('Merge Commands').item.json.remote_only }}",
+              "type": "string"
+            },
+            {
+              "id": "carry-label",
+              "name": "command_label",
+              "value": "={{ $('Merge Commands').item.json.command_label }}",
+              "type": "string"
+            },
+            {
+              "id": "carry-chat",
+              "name": "chat_id",
+              "value": "={{ $('Merge Commands').item.json.chat_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2048,
+        544
+      ],
+      "id": "f85fd916-215c-449f-964b-bd14b628b389",
+      "name": "Details"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "=You will receive text extracted from a PDF resume. Extract all the important information typically found in a resume, including:\n\n- Full name and contact information (phone, email, address if available)\n- Professional summary or objective\n- Work experience (job titles, company names, locations, dates, key responsibilities, achievements)\n- Education background (degrees, institutions, graduation dates)\n- Skills (technical skills, soft skills, languages)\n- Certifications or licenses\n- Awards, honors, or recognitions\n- Additional relevant information (projects, publications, volunteer work, etc.)\n\nOrganize the extracted information clearly with descriptive headings and simple lists. Format the output for easy readability and processing by another AI, avoiding unnecessary formatting or escape characters."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1696,
+        544
+      ],
+      "id": "3d3f1278-4517-4276-95cc-6918c14cc443",
+      "name": "Resume Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are a Strict Recruitment Logic Engine. Your ONLY task is to return a valid JSON object based on a hard mathematical salary check and a conservative skill assessment.\n\n### INPUT DATA\n1. **Candidate Resume:**\n{{ $('Details').item.json.resume }}\n\n2. **Candidate Minimum Salary Floor (USD):**\n{{ $('Details').item.json.expected_salary }}\n\n3. **Job Listing (JSON):**\n{{ JSON.stringify($json) }}\n\n---\n\n### STEP 1: DATA NORMALIZATION (The \"Hierarchy of Truth\")\n\n**Goal:** Derive a single clean integer called `JOB_CEILING`.\n\n**Priority 1: CHECK CLEAN JSON FIELDS (Crucial)**\nLook at the input JSON fields `job_max_salary` and `job_min_salary`.\n- **IF** `job_max_salary` is a number greater than 0:\n  - Set `JOB_CEILING` = `job_max_salary`.\n  - **STOP.** Do not look at the text description. Use this number.\n- **ELSE IF** `job_min_salary` is a number greater than 0:\n  - Set `JOB_CEILING` = `job_min_salary`.\n  - **STOP.**\n- **ELSE:** Proceed to Priority 2.\n\n**Priority 2: PARSE TEXT (Only if Priority 1 failed)**\nLook at the `salary` text field (e.g., \"Pay Range $87,100.00 - $157,450.00\").\n1. **Sanitize:** Remove ALL of the following characters: `$`, `,`, `USD`, `Pay Range`.\n   - Example: \"$157,450.00\" becomes \"157450.00\".\n2. **Handle Decimals:** Round down or remove decimal places.\n   - Example: \"157450.00\" becomes \"157450\".\n3. **Handle \"k\":** Replace \"k\" with \"000\".\n4. **Identify Max:** Pick the highest remaining number.\n5. **Handle Hourly:** If the text contained \"/hr\" or \"hourly\", multiply the number by 2080.\n\n**RESULT:** You now have a clean integer `JOB_CEILING`.\n(If no data found, `JOB_CEILING` = 0).\n\n---\n\n### STEP 2: THE MATH COMPARISON\n\n**Variables:**\n- `MIN_FLOOR` = Candidate's Expected Salary (Clean Integer).\n- `JOB_CEILING` = Result from Step 1.\n\n**The Strict Logic Rules:**\n- **PASS:** If `JOB_CEILING` >= `MIN_FLOOR`.\n- **PASS:** If `JOB_CEILING` is within 5% of `MIN_FLOOR`.\n- **FAIL:** If `JOB_CEILING` < `MIN_FLOOR`.\n- **FAIL:** If `JOB_CEILING` == 0.\n\n** SANITY CHECK (Read this):**\n- 157450 is GREATER than 100000. Result: **PASS**.\n- 224000 is GREATER than 100000. Result: **PASS**.\n- Do NOT output \"Salary is below floor\" if the number is mathematically higher.\n\n---\n\n### STEP 3: CONSERVATIVE SKILL SCORING (Only if Step 2 Passes)\n\n**Instruction:** Act as a strict hiring manager. Do not be generous. Scores should reflect reality.\n\n- **10 (Unicorn):** \n  - Salary Matches.\n  - Candidate has **EXACT** Tech Stack (e.g., Job wants Java/Spring, Candidate has Java/Spring).\n  - Candidate has **EXACT** Years of Experience (or more).\n  - Candidate has **RELEVANT** Domain Knowledge (e.g., Defense, Finance, Healthcare).\n  \n- **8-9 (Strong Fit):**\n  - Salary Matches.\n  - Candidate has all **Core Technical Skills**.\n  - Missing only minor \"Nice-to-have\" tools.\n  - Domain match is good but not perfect.\n\n- **6-7 (Capable but Gaps):**\n  - Salary Matches.\n  - Candidate fits the general role (e.g., Software Engineer) but uses a different stack (e.g., Job wants React, Candidate knows Angular).\n  - OR Candidate is slightly junior for the role.\n\n- **1-5 (Weak Match):**\n  - Salary Matches.\n  - Candidate lacks core technical requirements (e.g., Python dev applying for Embedded C++ role).\n  - OR Candidate is significantly over/under qualified.\n\n- **0 (Automatic Fail):** \n  - Salary Logic Failed (Step 2 was FAIL).\n\n---\n\n### 📝 EXTRACTION RULES\n1.  **job_description:** Summarize in <100 words.\n2.  **responsibilities / qualifications:** Format: \"Point 1;\\nPoint 2;\\nPoint 3\".\n3.  **apply_link:** Extract `apply_options`. Format HTML `<a href='{link}'>{publisher}</a>`. Join with `;\\n`. Max 4.\n4.  **remote:** \"Yes\" or \"No\".\n5.  **salary:** Extract original text string. If empty, print the `job_min_salary` - `job_max_salary` range.\n6.  **match_reason:**\n    - If Score 0: \"Job max salary ($[JOB_CEILING]) is below candidate floor ($[MIN_FLOOR]).\"\n    - If Score > 0: \"Salary fits ($[JOB_CEILING]). [Strict assessment of skill gaps or fit].\"\n    - If Score is below 6 or 7 because of some skill requirements and other qualifications needed, mention each skills in the match_reason that the candidate is lacking or needs to learn.\n\n---\n\n### FINAL OUTPUT JSON\nReturn ONLY this single JSON object.\n\n{\n  \"job_title\": \"\",\n  \"job_description\": \"\",\n  \"company\": \"\",\n  \"employment_type\": \"\",\n  \"remote\": \"\",\n  \"salary\": \"\",\n  \"benefits\": \"\",\n  \"responsibilities\": \"\",\n  \"qualifications\": \"\",\n  \"apply_link\": \"\",\n  \"match_score\": 0,\n  \"match_reason\": \"\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1008,
+        1232
+      ],
+      "id": "ce9f0fe0-1c0f-418e-9f7e-fdda6c1bdb0b",
+      "name": "Job Compatibility Agent"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1472,
+        1408
+      ],
+      "id": "341361b1-f91c-46ec-bc72-d46ee45e5af9",
+      "name": "Wait",
+      "webhookId": "40450180-fa64-4967-8d9e-44ec97048a7e"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "output.match_reason"
+            }
+          ]
+        },
+        "options": {
+          "mergeLists": false
+        }
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        1440
+      ],
+      "id": "8ffeb4e7-a118-449a-b559-7320e55e1606",
+      "name": "Aggregate Reasons"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        1136
+      ],
+      "id": "f699bc1d-c8f6-4585-9549-a58b2b838350",
+      "name": "Aggregate Jobs"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1472,
+        1136
+      ],
+      "id": "0a80de29-fea2-4808-bbc3-e2bfd22791bb",
+      "name": "Merge Listing"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2864,
+        1296
+      ],
+      "id": "03029ac1-56ac-4f6c-96b6-e15f21878d42",
+      "name": "Merge Result"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        1296
+      ],
+      "id": "54d01ba7-1650-4bfc-bf48-3b39fd55cd9d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ JSON.stringify($json.data) }}",
+        "options": {
+          "systemMessage": "=You are a precise data-to-HTML conversion AI. Your ONLY goal is to convert job listing JSON data into a strictly formatted HTML email body.\n\nYou must exhibit DETERMINISTIC behavior:\n1. ALWAYS output the exact same HTML structure for the same input.\n2. DO NOT hallucinate, summarize, rephrase, or shorten text.\n3. DO NOT use placeholders. The input is guaranteed to have all values; render them exactly as they are.\n\n────────────────────────────────────────\nGLOBAL OUTPUT RULES (STRICT)\n────────────────────────────────────────\n• Output ONLY raw HTML string. No markdown.\n• Use INLINE styles ONLY.\n• Sort jobs by `match_score` DESCENDING (10 → 1).\n• Decode any HTML entities in the source text.\n• **LAYOUT STRATEGY**: Use `inline-block` for layout (Gmail safe). Do not use Flexbox.\n\n────────────────────────────────────────\nROOT CONTAINER\n────────────────────────────────────────\n<!-- font-size:0 removes whitespace between inline-blocks. text-align:center centers the cards. -->\n<div style=\"font-family:Arial,Helvetica,sans-serif;font-size:0;text-align:center;background-color:#ffffff;\">\n\n(Each Job Card represents one item in the input array)\n\n────────────────────────────────────────\nJOB CARD CONTAINER\n────────────────────────────────────────\n<!-- \n  display:inline-block allows side-by-side. \n  min-width:280px forces the card to wrap to a new line on mobile screens.\n  font-size:14px restores text size (since parent is 0).\n  text-align:left resets alignment (since parent is center).\n-->\n<div style=\"display:inline-block;vertical-align:top;width:46%;min-width:280px;margin:10px;text-align:left;font-size:14px;background:#f9f9f9;border-radius:12px;padding:28px 20px 20px 20px;position:relative;border:1px solid #e6e6e6;box-sizing:border-box;\">\n\n────────────────────────────────────────\nELEMENT: TOP MATCH LABEL\n────────────────────────────────────────\nCONDITION: Render this div ONLY if `match_score` is equal to 10.\nSTYLE:\n<div style=\"background:#0b8043;color:#ffffff;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:bold;letter-spacing:0.4px;display:inline-block;\">\nTOP MATCH\n</div>\n\n────────────────────────────────────────\nELEMENT: MATCH SCORE BADGE\n────────────────────────────────────────\nDATA: **match_score**\nSTYLE:\n<div style=\"margin-top:-40px;margin-right:-5px;background:#1a73e8;color:#ffffff;width:60px;height:60px;line-height:64px;text-align:center;border-radius:999px;font-weight:bold;font-size:30px;float:right;box-shadow:0 4px 10px rgba(26,115,232,0.35);\">\n**match_score**\n</div>\n\n────────────────────────────────────────\nELEMENT: HEADER\n────────────────────────────────────────\nDATA: **job_title** and **company**\nSTYLE:\n<div style=\"margin-top:6px;\">\n<div style=\"font-size:18px;font-weight:bold;color:#202124;line-height:1.4;\">\n**job_title**\n</div>\n<div style=\"font-size:14px;color:#5f6368;margin-top:4px;\">\n**company**\n</div>\n</div>\n\n────────────────────────────────────────\nELEMENT: METADATA TAGS\n────────────────────────────────────────\nDATA: **employment_type** and **remote**\nSTYLE:\n<div style=\"margin-top:10px;\">\n<span style=\"font-size:13px;background:#f1f3f4;padding:4px 8px;border-radius:6px;color:#5f6368;display:inline-block;\">\nEmployment Type: **employment_type**\n</span>\n</div>\n<div style=\"margin-top:6px;\">\n<span style=\"font-size:13px;background:#f1f3f4;padding:4px 8px;border-radius:6px;color:#5f6368;display:inline-block;\">\nRemote: **remote**\n</span>\n</div>\n\n────────────────────────────────────────\nELEMENT: SALARY\n────────────────────────────────────────\nDATA: **salary**\nSTYLE:\n<div style=\"margin-top:10px;display:inline-block;background:#e6f4ea;color:#0b8043;padding:6px 10px;border-radius:6px;font-weight:bold;font-size:14px;\">\n💰 **salary**\n</div>\n\n────────────────────────────────────────\nELEMENT: LIST SECTIONS (Responsibilities, Qualifications, Benefits)\n────────────────────────────────────────\nINSTRUCTIONS:\n1. For 'responsibilities', 'qualifications', and 'benefits'.\n2. The input is a string separated by newlines (\\n) or semicolons (;). Split them into individual items.\n3. Render every item found.\n\nHEADER STYLE:\n<div style=\"font-size:14px;font-weight:bold;margin-top:16px;\">\nResponsibilities\n</div>\n\nLIST STYLE:\n<ul style=\"margin-top:8px;padding-left:18px;margin-bottom:0;\">\n<li>**Item 1**</li>\n<li>**Item 2**</li>\n</ul>\n\n(Repeat this pattern for Qualifications and Benefits headers/lists)\n\n────────────────────────────────────────\nELEMENT: MATCH REASON\n────────────────────────────────────────\nDATA: **match_reason**\nSTYLE:\n<div style=\"margin-top:14px;background:#eef3fd;padding:12px;border-radius:8px;font-size:13px;line-height:1.5;\">\n<strong>Why this matches you:</strong><br/>\n**match_reason**\n</div>\n\n────────────────────────────────────────\nELEMENT: APPLY BUTTONS\n────────────────────────────────────────\nDATA: **apply_link**\nINSTRUCTIONS:\nThe input `apply_link` is a string containing HTML anchors (e.g., `<a href=\"...\">Title</a>`).\n1. Regex/Parse the input to extract the URL (href) and the Label (text content) for EACH link.\n2. Create a button for EACH extracted link.\n\nCONTAINER (No Flexbox - use standard block flow):\n<div style=\"margin-top:18px;\">\n\nBUTTON STYLE:\n<a href=\"**extracted_url**\" style=\"display:inline-block;padding:10px 16px;background:#1a73e8;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:bold;font-size:14px;white-space:nowrap;margin-right:10px;margin-bottom:10px;\">\n**extracted_label**\n</a>\n\n</div>\n\n────────────────────────────────────────\nCLOSING TAGS\n────────────────────────────────────────\nClose the job card div.\nClose the root container div after all jobs are rendered."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        2544,
+        1136
+      ],
+      "id": "cbd68357-4079-4581-af6b-58dbcac44a44",
+      "name": "Email Builder Agent"
+    },
+    {
+      "parameters": {
+        "batchSize": 10,
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1776,
+        1136
+      ],
+      "id": "46282d22-2eda-4a21-b74c-dc3f3e5c653b",
+      "name": "Process Results in Batch"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3472,
+        1648
+      ],
+      "id": "91f0ae72-b89e-454b-925e-853c99a39443",
+      "name": "Wait1",
+      "webhookId": "40450180-fa64-4967-8d9e-44ec97048a7e"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b120801b-b477-4cb2-a0e4-83dbe18357ac",
+              "leftValue": "={{ $json.output.match_score }}",
+              "rightValue": 7,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2064,
+        1152
+      ],
+      "id": "aeab3590-1165-485e-b665-dee22c421295",
+      "name": "If Match Score >= 7"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://drive.google.com/file/d/1m-FZf2-CkDZjwahqSnAw5DudZBI-cUfg/view?usp=sharing",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1168,
+        544
+      ],
+      "id": "cfa156ce-9f77-4587-a553-dd05d35ba25d",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "mQmwTgUXWRZQLHTU",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        1456
+      ],
+      "id": "3f6550e8-254d-4652-9c48-8814870b0052",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "zaBbAJFlcISoaDMI",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"job_title\": \"\",\n  \"job_description\": \"\",\n  \"company\": \"\",\n  \"employment_type\": \"\",\n  \"remote\": \"\",\n  \"salary\": \"\",\n  \"benefits\": \"\",\n  \"responsibilities\": \"\",\n  \"qualifications\": \"\",\n  \"apply_link\": \"\",\n  \"match_score\": 0,\n  \"match_reason\": \"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1280,
+        1424
+      ],
+      "id": "311d0a61-7bd6-4008-b7d9-ef15ce7bcb01",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-chat",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1616,
+        624
+      ],
+      "id": "c820e79a-6527-4ee7-9d30-bca6ca47b33b",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "SqqUKCNJXquayoTH",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "q": "={{ $json.search_query }}",
+        "additionalFields": {
+          "as_lq": "https://www.linkedin.com/jobs/"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApi",
+      "typeVersion": 1,
+      "position": [
+        2272,
+        544
+      ],
+      "id": "8adc77ff-a438-4241-831a-894d8eaa37a6",
+      "name": "Google search",
+      "credentials": {
+        "serpApi": {
+          "id": "KSlPtW5sM7FenWI4",
+          "name": "SerpApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-chat",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        896,
+        1440
+      ],
+      "id": "0a295374-f8b8-479a-a704-68a9ac16bb2b",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "SqqUKCNJXquayoTH",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-chat",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2448,
+        1296
+      ],
+      "id": "89aab20f-ee58-4fcc-841b-0fc2698713c0",
+      "name": "OpenRouter Chat Model2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "SqqUKCNJXquayoTH",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-chat",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2448,
+        1680
+      ],
+      "id": "5cd7e5f0-ead6-434e-8e53-d3070a9f8004",
+      "name": "OpenRouter Chat Model3",
+      "credentials": {
+        "openRouterApi": {
+          "id": "SqqUKCNJXquayoTH",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Command Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Command Router": {
+      "main": [
+        [
+          {
+            "node": "Set Query - ORAN",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Query - CORE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Query - IP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Query - RND",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Query - EGYPT",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Query - REMOTE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Help",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Query - JOBS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - ORAN": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - CORE": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - IP": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - RND": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - EGYPT": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - REMOTE": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Query - JOBS": {
+      "main": [
+        [
+          {
+            "node": "Merge Commands",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Commands": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Merge Listing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Job Compatibility Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze what skills to learn": {
+      "main": [
+        [
+          {
+            "node": "Merge Result",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Resume Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Details": {
+      "main": [
+        [
+          {
+            "node": "Google search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume Agent": {
+      "main": [
+        [
+          {
+            "node": "Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Compatibility Agent": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Reasons": {
+      "main": [
+        [
+          {
+            "node": "Analyze what skills to learn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Jobs": {
+      "main": [
+        [
+          {
+            "node": "Email Builder Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Listing": {
+      "main": [
+        [
+          {
+            "node": "Process Results in Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Result": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Telegram Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Builder Agent": {
+      "main": [
+        [
+          {
+            "node": "Merge Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Results in Batch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If Match Score >= 7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Process Results in Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Match Score >= 7": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate Reasons",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Job Compatibility Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Resume Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Job Compatibility Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email Builder Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analyze what skills to learn",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Telegram Digest": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "2acd96de-1b1c-4885-88b3-940a1fe6bb3d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fc666cff471952b6c0564b4751c194924ffc3820dbd0f8475a6c32565d680145"
+  },
+  "nodeGroups": [],
+  "id": "3haHLPLNA0eyPVYo",
+  "tags": []
+}
