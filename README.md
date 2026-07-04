@@ -14,7 +14,7 @@ job-hunter/
 ├── docker-compose.yml
 ├── .env
 ├── local-files/
-└── 1783098445768_Job_Hunter_1_.json
+└── Job_Hunter_1_.json
 ```
 
 ## 3. Configure `.env`
